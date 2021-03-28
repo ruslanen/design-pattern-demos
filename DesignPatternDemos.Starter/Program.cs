@@ -1,8 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Xml.Linq;
+using System.Xml.Schema;
+using DesignPatternDemos.Command;
 using DesignPatternDemos.Decorator;
+using DesignPatternDemos.Factory;
+using DesignPatternDemos.FactoryMethod;
 using DesignPatternDemos.Observer.Models;
 using DesignPatternDemos.Observer.Observers;
 using DesignPatternDemos.Observer.Subjects;
+using DesignPatternDemos.Singleton;
 using DesignPatternDemos.Strategy;
 
 namespace DesignPatternDemos
@@ -15,6 +24,9 @@ namespace DesignPatternDemos
             designPatternDemos.DemoStrategy();
             designPatternDemos.DemoObserver();
             designPatternDemos.DemoDecorator();
+            designPatternDemos.DemoSingleton();
+            designPatternDemos.DemoFactory();
+            designPatternDemos.DemoCommand();
         }
     }
 
@@ -89,10 +101,75 @@ namespace DesignPatternDemos
         }
         
         /// <summary>
-        /// Демо паттерна "Одиночка"
+        /// Демо паттерна "Одиночка".
+        /// Паттерн "Одиночка" гарантирует, что класс имеет только один экземпляр, и предоставляет глобальную точку доступа к этому экземпляру.
         /// </summary>
         public void DemoSingleton()
         {
+            var demoXDocument = XDocument.Parse(
+                File.ReadAllText("../../../../DesignPatternDemos.Singleton/demo.xml"),
+                LoadOptions.PreserveWhitespace | LoadOptions.SetLineInfo);
+            var errors = new List<string>();
+            demoXDocument.Validate(DemoXmlSerializationWrap.SchemaSet, (sender, validationEventArgs) =>
+            {
+                errors.Add($"строка {validationEventArgs.Exception.LineNumber}, символ {validationEventArgs.Exception.LinePosition}: ошибка валидации: {validationEventArgs.Message}");
+            });
+
+            if (errors.Count > 0)
+            {
+                Console.WriteLine(string.Join('\n', errors));
+            }
+            else
+            {
+                var country = (Country)DemoXmlSerializationWrap.Serializer.Deserialize(demoXDocument.CreateReader());
+                Console.WriteLine(country.CountryName);
+                Console.WriteLine(country.Population);
+            }
+        }
+        
+        /// <summary>
+        /// Демо паттернов "Фабрика" (не является полноценным паттерном), "Фабричный метод" и "Абстрактная фабрика".
+        /// </summary>
+        public void DemoFactory()
+        {
+            // "Фабрика" (не является полноценным паттерном)
+            var dashboard = new Dashboard(new WidgetFactory());
+            dashboard.AddWidget("pie");
+
+            // Фабричный метод
+            // Паттерн «Фабричный метод» отвечает за создание объектов и инкапсулирует эту операцию в субклассе.
+            // Таким образом клиетский код в базовом класссе отделяется от кода создания объекта в классе-наследнике.
+            var gamingStore = new GamingComputerStore();
+            gamingStore.OrderComputer("budget");
+
+            var officeStore = new OfficeComputerStore();
+            officeStore.OrderComputer("top");
+
+            // Абстрактная фабрика
+            // Паттерн «Абстрактная фабрика» представляет интерфейс создания семейств взаимосвязанных или взаимозависимых объектов без указания их конкретных классов.
+            // На основе абстрактной фабрики создаются одни или более конкретных фабрик, производящих одинаковые объекты, но с разными реализациями.
+            // Это означает, что абстрактная фабрика определяет интерфейс для создания семейства объектов.
+            var gamingStore1 = new AbstractFactory.GamingComputerStore();
+            gamingStore1.OrderComputer("budget");
+            var officeStore1 = new AbstractFactory.OfficeComputerStore();
+            officeStore1.OrderComputer("top");
+        }
+
+        /// <summary>
+        /// Паттерн "Команда" инкапсулирует запрос в виде объекта, делая возможной параметризацию клиентских объектов с другими запросами,
+        /// организацию очереди или регистрацию запросов, а также поддержку отмены операций.
+        /// </summary>
+        public void DemoCommand()
+        {
+            var commandDispatcher = new CommandDispatcher();
+            var pageInfoService = new PageInfoService();
+            commandDispatcher.SetCommand(0, new HelpCommand());
+            commandDispatcher.SetCommand(1, new PageSizeCommand(pageInfoService));
+            commandDispatcher.SetCommand(2, new PageHtmlCommand(pageInfoService));
+            
+            // TODO: Отдельный класс для определения типа команды по аргументам
+            commandDispatcher.OnCommandExecute(1, new []{ "https://github.com" });
+            commandDispatcher.OnCommandExecute(2, new []{ "https://github.com" });
         }
     }
 }
