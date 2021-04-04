@@ -4,8 +4,10 @@ using System.IO;
 using System.Linq;
 using System.Xml.Linq;
 using System.Xml.Schema;
+using DesignPatternDemos.Adapter;
 using DesignPatternDemos.Command;
 using DesignPatternDemos.Decorator;
+using DesignPatternDemos.Facade;
 using DesignPatternDemos.Factory;
 using DesignPatternDemos.FactoryMethod;
 using DesignPatternDemos.Observer.Models;
@@ -20,17 +22,19 @@ namespace DesignPatternDemos
     {
         static void Main(string[] args)
         {
-            var designPatternDemos = new DesignPatternDemos();
+            var designPatternDemos = new DesignPatternDemonstration();
             designPatternDemos.DemoStrategy();
             designPatternDemos.DemoObserver();
             designPatternDemos.DemoDecorator();
             designPatternDemos.DemoSingleton();
             designPatternDemos.DemoFactory();
             designPatternDemos.DemoCommand();
+            designPatternDemos.DemoAdapter();
+            designPatternDemos.DemoFacade();
         }
     }
 
-    class DesignPatternDemos
+    class DesignPatternDemonstration
     {
         /// <summary>
         /// Демо паттерна "Наблюдатель".
@@ -170,6 +174,57 @@ namespace DesignPatternDemos
             // TODO: Отдельный класс для определения типа команды по аргументам
             commandDispatcher.OnCommandExecute(1, new []{ "https://github.com" });
             commandDispatcher.OnCommandExecute(2, new []{ "https://github.com" });
+        }
+
+        /// <summary>
+        /// Паттерн "Адаптер" преобразует интерфейс класса к другому интерфейсу, на который рассчитан клиент.
+        /// Адаптер обеспечивает совместную работу классов, невозможную в обычных условиях из-за несовместимости интерфейсов.
+        /// </summary>
+        public void DemoAdapter()
+        {
+            // Эта строка необходима для загрузки сборки DesignPatternDemos.Adapter в домен
+            var loadAssembly = new PopulationInfoTcpService();
+
+            // Будем считать, что код ниже имитирует получение зарегистрированных имплементаций через DI-контейнер
+            var services = AppDomain.CurrentDomain.GetAssemblies()
+                .FirstOrDefault(x => x.GetName().Name == "DesignPatternDemos.Adapter")?
+                .GetTypes()
+                .Where(x => typeof(DesignPatternDemos.Adapter.IHttpService).IsAssignableFrom(x) && !x.IsInterface);
+
+            var results = new List<string>();
+            // Инициализация сервисов и получения результата их работы
+            foreach (var service in services)
+            {
+                Adapter.IHttpService serviceInstance;
+                // Этот сервис требует зависимости, поэтому экземпляр для него создается через параметризованный конструктор
+                if (service == typeof(PopulationInfoTcpServiceAdapter))
+                {
+                    serviceInstance = (Adapter.IHttpService) Activator.CreateInstance(service, new PopulationInfoTcpService());
+                }
+                else
+                {
+                    serviceInstance = (Adapter.IHttpService)Activator.CreateInstance(service);
+                }
+                
+                results.Add(serviceInstance.GetResultFromHttp());
+            }
+        }
+
+        /// <summary>
+        /// Паттерн "Фасад" предоставляет унифицированный интерфейс к группе интерфейсов подсистемы.
+        /// "Фасад" определяет высокоуровневый интерфейс, упрощающей работу с подсистемой.
+        /// </summary>
+        public void DemoFacade()
+        {
+            // Как правило, клиентский код не создает зависимости для фасада, но учитывая, что это демонстрационный пример,
+            // код представлен в упрощенном виде
+            var sensorResultsFacade = new SensorResultsFacade(
+                new TemperatureSensor(),
+                new HumiditySensor(),
+                new MotionActivitySensor(),
+                new SoundActivitySensor(),
+                new SmokeSensor());
+            sensorResultsFacade.GetResults();
         }
     }
 }

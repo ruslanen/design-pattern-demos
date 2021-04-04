@@ -18,6 +18,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignPatternDemos.FactoryM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignPatternDemos.AbstractFactory", "DesignPatternDemos.AbstractFactory\DesignPatternDemos.AbstractFactory.csproj", "{FD66F452-66B7-4485-A77A-6B1AFA25BB5B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignPatternDemos.Adapter", "DesignPatternDemos.Adapter\DesignPatternDemos.Adapter.csproj", "{B161B353-BF12-4E39-AA0F-2948A732F9D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignPatternDemos.Facade", "DesignPatternDemos.Facade\DesignPatternDemos.Facade.csproj", "{B5772C80-CE29-41CD-ACD8-1FE138393B40}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,5 +64,13 @@ Global
 		{FD66F452-66B7-4485-A77A-6B1AFA25BB5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD66F452-66B7-4485-A77A-6B1AFA25BB5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD66F452-66B7-4485-A77A-6B1AFA25BB5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B161B353-BF12-4E39-AA0F-2948A732F9D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B161B353-BF12-4E39-AA0F-2948A732F9D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B161B353-BF12-4E39-AA0F-2948A732F9D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B161B353-BF12-4E39-AA0F-2948A732F9D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5772C80-CE29-41CD-ACD8-1FE138393B40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5772C80-CE29-41CD-ACD8-1FE138393B40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5772C80-CE29-41CD-ACD8-1FE138393B40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5772C80-CE29-41CD-ACD8-1FE138393B40}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
