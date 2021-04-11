@@ -10,10 +10,12 @@
       <ProjectReference Include="..\DesignPatternDemos.AbstractFactory\DesignPatternDemos.AbstractFactory.csproj" />
       <ProjectReference Include="..\DesignPatternDemos.Adapter\DesignPatternDemos.Adapter.csproj" />
       <ProjectReference Include="..\DesignPatternDemos.Command\DesignPatternDemos.Command.csproj" />
+      <ProjectReference Include="..\DesignPatternDemos.Composite\DesignPatternDemos.Composite.csproj" />
       <ProjectReference Include="..\DesignPatternDemos.Decorator\DesignPatternDemos.Decorator.csproj" />
       <ProjectReference Include="..\DesignPatternDemos.Facade\DesignPatternDemos.Facade.csproj" />
       <ProjectReference Include="..\DesignPatternDemos.FactoryMethod\DesignPatternDemos.FactoryMethod.csproj" />
       <ProjectReference Include="..\DesignPatternDemos.Factory\DesignPatternDemos.Factory.csproj" />
+      <ProjectReference Include="..\DesignPatternDemos.Iterator\DesignPatternDemos.Iterator.csproj" />
       <ProjectReference Include="..\DesignPatternDemos.Observer\DesignPatternDemos.Observer.csproj" />
       <ProjectReference Include="..\DesignPatternDemos.Singleton\DesignPatternDemos.Singleton.csproj" />
       <ProjectReference Include="..\DesignPatternDemos.Strategy\DesignPatternDemos.Strategy.csproj" />

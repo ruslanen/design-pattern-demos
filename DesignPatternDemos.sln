@@ -24,6 +24,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignPatternDemos.Facade",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignPatternDemos.TemplateMethod", "DesignPatternDemos.TemplateMethod\DesignPatternDemos.TemplateMethod.csproj", "{9E0D3170-8095-4479-BC02-A766B079B956}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignPatternDemos.Iterator", "DesignPatternDemos.Iterator\DesignPatternDemos.Iterator.csproj", "{81452B8F-6C6E-4289-8C4E-DCCE9F14B5B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignPatternDemos.Composite", "DesignPatternDemos.Composite\DesignPatternDemos.Composite.csproj", "{78F8C186-BFDB-4B39-B647-75ECC320862E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -78,5 +82,13 @@ Global
 		{9E0D3170-8095-4479-BC02-A766B079B956}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E0D3170-8095-4479-BC02-A766B079B956}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E0D3170-8095-4479-BC02-A766B079B956}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81452B8F-6C6E-4289-8C4E-DCCE9F14B5B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81452B8F-6C6E-4289-8C4E-DCCE9F14B5B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81452B8F-6C6E-4289-8C4E-DCCE9F14B5B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81452B8F-6C6E-4289-8C4E-DCCE9F14B5B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78F8C186-BFDB-4B39-B647-75ECC320862E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78F8C186-BFDB-4B39-B647-75ECC320862E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78F8C186-BFDB-4B39-B647-75ECC320862E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78F8C186-BFDB-4B39-B647-75ECC320862E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

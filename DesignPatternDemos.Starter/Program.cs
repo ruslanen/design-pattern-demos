@@ -6,10 +6,12 @@ using System.Xml.Linq;
 using System.Xml.Schema;
 using DesignPatternDemos.Adapter;
 using DesignPatternDemos.Command;
+using DesignPatternDemos.Composite;
 using DesignPatternDemos.Decorator;
 using DesignPatternDemos.Facade;
 using DesignPatternDemos.Factory;
 using DesignPatternDemos.FactoryMethod;
+using DesignPatternDemos.Iterator;
 using DesignPatternDemos.Observer.Models;
 using DesignPatternDemos.Observer.Observers;
 using DesignPatternDemos.Observer.Subjects;
@@ -33,6 +35,8 @@ namespace DesignPatternDemos
             designPatternDemos.DemoAdapter();
             designPatternDemos.DemoFacade();
             designPatternDemos.DemoTemplateMethod();
+            designPatternDemos.DemoIterator();
+            designPatternDemos.DemoComposite();
         }
     }
 
@@ -239,6 +243,47 @@ namespace DesignPatternDemos
             // Данный паттерн позволяет классам, реализующим алгоритм, передать выполнение некоторых шагов в субклассы
             var documentBuilder = new PdfDocumentBuilder();
             documentBuilder.Build();
+        }
+
+        /// <summary>
+        /// Паттерн "Итератор" предоставляет механизм последовательного перебора элементов коллекции без раскрытия ее
+        /// внутреннего представления. Кроме того, перебор элементов выполняется объектом итератора, а не самой коллекцией.
+        /// Это упрощает интерфейс и реализацию коллекции, а также способствует более логичному распределению обязанностей.
+        /// </summary>
+        public void DemoIterator()
+        {
+            IComponent arduinoSchemaComponent = new ArduinoSchemaComponent();
+            IComponent nodeMcuSchemaComponent = new NodeMcuSchemaComponent();
+
+            var arduinoIterator = arduinoSchemaComponent.CreateIterator();
+            var nodeMcuIterator = nodeMcuSchemaComponent.CreateIterator();
+
+            ShowSensorInfos(arduinoIterator);
+            ShowSensorInfos(nodeMcuIterator);
+            
+            void ShowSensorInfos(IIterator iterator)
+            {
+                while (iterator.HasNext())
+                {
+                    var item = (SensorComponent)iterator.Next();
+                    Console.WriteLine(item.Name);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Паттерн "Компоновщик" объединяет объекты в древовидные структуры для предоставления иерархий "часть/целое".
+        /// Компоновщик позволяет клиенту выполнять однородные операции с отдельными объектами и их совокупоностями.
+        /// </summary>
+        public void DemoComposite()
+        {
+            var root = new SchemaComposite("Arduino Uno");
+            var child1 = new SchemaComposite("Arduino Nano");
+            child1.Add(new SchemaItem("Датчик температуры", DateTime.Now, 10));
+            child1.Add(new SchemaItem("Датчик влажности", DateTime.Now, 15));
+            root.Add(child1);
+            root.Add(new SchemaItem("Датчик звука", DateTime.Now, 20));
+            // TODO: Обход по дереву
         }
     }
 }
