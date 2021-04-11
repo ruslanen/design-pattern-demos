@@ -17,6 +17,7 @@
       <ProjectReference Include="..\DesignPatternDemos.Observer\DesignPatternDemos.Observer.csproj" />
       <ProjectReference Include="..\DesignPatternDemos.Singleton\DesignPatternDemos.Singleton.csproj" />
       <ProjectReference Include="..\DesignPatternDemos.Strategy\DesignPatternDemos.Strategy.csproj" />
+      <ProjectReference Include="..\DesignPatternDemos.TemplateMethod\DesignPatternDemos.TemplateMethod.csproj" />
     </ItemGroup>
 
 </Project>

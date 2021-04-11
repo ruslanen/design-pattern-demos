@@ -15,6 +15,7 @@ using DesignPatternDemos.Observer.Observers;
 using DesignPatternDemos.Observer.Subjects;
 using DesignPatternDemos.Singleton;
 using DesignPatternDemos.Strategy;
+using DesignPatternDemos.TemplateMethod;
 
 namespace DesignPatternDemos
 {
@@ -31,6 +32,7 @@ namespace DesignPatternDemos
             designPatternDemos.DemoCommand();
             designPatternDemos.DemoAdapter();
             designPatternDemos.DemoFacade();
+            designPatternDemos.DemoTemplateMethod();
         }
     }
 
@@ -225,6 +227,18 @@ namespace DesignPatternDemos
                 new SoundActivitySensor(),
                 new SmokeSensor());
             sensorResultsFacade.GetResults();
+        }
+
+        /// <summary>
+        /// Паттерн "Шаблонный метод" задает "скелет" алгоритма в методе, оставляя определение реализации некоторых
+        /// шагов субклассам. Субклассы могут переопределять некоторые части алгоритма без изменения его структуры.
+        /// Таким образом гарантируется неизменность структуры алгоритма при том, что часть реализации предоставляется субклассами.
+        /// </summary>
+        public void DemoTemplateMethod()
+        {
+            // Данный паттерн позволяет классам, реализующим алгоритм, передать выполнение некоторых шагов в субклассы
+            var documentBuilder = new PdfDocumentBuilder();
+            documentBuilder.Build();
         }
     }
 }
