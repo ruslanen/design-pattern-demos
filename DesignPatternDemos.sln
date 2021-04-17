@@ -28,6 +28,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignPatternDemos.Iterator
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignPatternDemos.Composite", "DesignPatternDemos.Composite\DesignPatternDemos.Composite.csproj", "{78F8C186-BFDB-4B39-B647-75ECC320862E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignPatternDemos.State", "DesignPatternDemos.State\DesignPatternDemos.State.csproj", "{8FE014E4-1611-4B18-8001-B9BAF2D0643D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -90,5 +92,9 @@ Global
 		{78F8C186-BFDB-4B39-B647-75ECC320862E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78F8C186-BFDB-4B39-B647-75ECC320862E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78F8C186-BFDB-4B39-B647-75ECC320862E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FE014E4-1611-4B18-8001-B9BAF2D0643D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FE014E4-1611-4B18-8001-B9BAF2D0643D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FE014E4-1611-4B18-8001-B9BAF2D0643D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FE014E4-1611-4B18-8001-B9BAF2D0643D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

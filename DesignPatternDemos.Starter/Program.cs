@@ -16,6 +16,7 @@ using DesignPatternDemos.Observer.Models;
 using DesignPatternDemos.Observer.Observers;
 using DesignPatternDemos.Observer.Subjects;
 using DesignPatternDemos.Singleton;
+using DesignPatternDemos.State;
 using DesignPatternDemos.Strategy;
 using DesignPatternDemos.TemplateMethod;
 
@@ -37,6 +38,7 @@ namespace DesignPatternDemos
             designPatternDemos.DemoTemplateMethod();
             designPatternDemos.DemoIterator();
             designPatternDemos.DemoComposite();
+            designPatternDemos.DemoState();
         }
     }
 
@@ -284,6 +286,26 @@ namespace DesignPatternDemos
             root.Add(child1);
             root.Add(new SchemaItem("Датчик звука", DateTime.Now, 20));
             // TODO: Обход по дереву
+        }
+
+        /// <summary>
+        /// Паттерн "Состояние" управляет изменением поведения объекта при изменении его внутреннего состояния.
+        /// Внешне это выглядит так, словно объект меняет свой класс.
+        /// Паттерн внешне очень похож на паттерн "Стратегия", различия в том, что паттерн "Состояние" имеет
+        /// детерменированное изменение своего состояния в зависимости от вызывающих методов (четкие переходы состояния).
+        /// Эти парттерны решают разные задачи. "Стратегия" обычно определяет в классе контекста поведение алгоритма.
+        /// При использовании паттерна "Состояния" клиент не должен напрямую менять состояние (только через методы).
+        /// Переходами между состояниями могут управлять классы состояний и контексты (IApplicationState и Application).
+        /// Использование паттерна увеличивает количество классов, но упрощает сопровождение
+        /// (меньше изменений в будещем, более гибкая и расширяемая архитектура).
+        /// </summary>
+        public void DemoState()
+        {
+            var application = new Application();
+            application.Initialize();
+            application.Migrate();
+            application.Start();
+            application.Stop();
         }
     }
 }
