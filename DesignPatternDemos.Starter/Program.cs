@@ -5,6 +5,7 @@ using System.Linq;
 using System.Xml.Linq;
 using System.Xml.Schema;
 using DesignPatternDemos.Adapter;
+using DesignPatternDemos.Bridge;
 using DesignPatternDemos.Command;
 using DesignPatternDemos.Composite;
 using DesignPatternDemos.Decorator;
@@ -41,6 +42,7 @@ namespace DesignPatternDemos
             designPatternDemos.DemoComposite();
             designPatternDemos.DemoState();
             designPatternDemos.DemoProxy();
+            designPatternDemos.DemoBridge();
         }
     }
 
@@ -335,6 +337,25 @@ namespace DesignPatternDemos
             // Пример применения паттерна "удаленный заместитель"
             IDiagnosticManager diagnosticManager = new DiagnosticManager();
             diagnosticManager.GetSummary("localhost");
+        }
+
+        /// <summary>
+        /// Паттерн "Мост" позволяет изменять реализацию и абстракцию, для чего они размещаются в двух разных иерархиях классов.
+        /// Мост — это структурный паттерн, он разделяет бизнес-логику или большой класс на несколько отдельных иерархий, которые потом можно развивать отдельно друг от друга.
+        /// Он необходим для избежания порождения большого количества классов.
+        /// Различие с паттерном "Стратегия" заключается в том, что "Стратегия" делает акцент на унифицированном использовании альтернативных алгоритмов,
+        /// а "Мост" занимается именно разделением абстракции от реализации.
+        /// </summary>
+        public void DemoBridge()
+        {
+            var tv = new Tv();
+            var remoteControl = new Remote(tv);
+            remoteControl.TogglePower();
+            remoteControl.ChannelUp();
+
+            var advancedRemoteControl = new AdvancedRemote(tv);
+            advancedRemoteControl.TogglePower();
+            advancedRemoteControl.Mute();
         }
     }
 }
