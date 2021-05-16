@@ -6,6 +6,7 @@ using System.Xml.Linq;
 using System.Xml.Schema;
 using DesignPatternDemos.Adapter;
 using DesignPatternDemos.Bridge;
+using DesignPatternDemos.Builder;
 using DesignPatternDemos.Command;
 using DesignPatternDemos.Composite;
 using DesignPatternDemos.Decorator;
@@ -43,6 +44,7 @@ namespace DesignPatternDemos
             designPatternDemos.DemoState();
             designPatternDemos.DemoProxy();
             designPatternDemos.DemoBridge();
+            designPatternDemos.DemoBuilder();
         }
     }
 
@@ -356,6 +358,23 @@ namespace DesignPatternDemos
             var advancedRemoteControl = new AdvancedRemote(tv);
             advancedRemoteControl.TogglePower();
             advancedRemoteControl.Mute();
+        }
+
+        /// <summary>
+        /// Шаблон "Строитель" инкапсулирует конструирование объекта и позволяет разделить его на этапы.
+        /// Строитель дает возможность использовать один и тот же код строительства для получения разных представлений объектов.
+        /// Строитель обладает следующими преимуществами:
+        /// - возможность поэтапного конструирования объекта с переменным набором этапов (в отличие от одноэтапных фабрик);
+        /// - сокрытие внутреннего представления объекта;
+        /// - инкапсуляция процесса создания сложного объекта;
+        /// - реализации объектов могут свободно изменяться, т.к. клиент имеет дело только с абстрактным интерфейсом;
+        /// </summary>
+        public void DemoBuilder()
+        {
+            var director = new HouseConstructDirector();
+            var houseBuilder = new StandardHouseBuilder();
+            director.BuildStandardHouse(houseBuilder, true);
+            var house = houseBuilder.GetResult();
         }
     }
 }

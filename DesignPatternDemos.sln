@@ -34,6 +34,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignPatternDemos.Proxy", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignPatternDemos.Bridge", "DesignPatternDemos.Bridge\DesignPatternDemos.Bridge.csproj", "{A8555AC4-CC46-4B75-847E-1602DE99F249}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignPatternDemos.Builder", "DesignPatternDemos.Builder\DesignPatternDemos.Builder.csproj", "{821341E1-399A-4441-B368-127A5514F176}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -108,5 +110,9 @@ Global
 		{A8555AC4-CC46-4B75-847E-1602DE99F249}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8555AC4-CC46-4B75-847E-1602DE99F249}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8555AC4-CC46-4B75-847E-1602DE99F249}.Release|Any CPU.Build.0 = Release|Any CPU
+		{821341E1-399A-4441-B368-127A5514F176}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{821341E1-399A-4441-B368-127A5514F176}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{821341E1-399A-4441-B368-127A5514F176}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{821341E1-399A-4441-B368-127A5514F176}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
