@@ -7,6 +7,7 @@ using System.Xml.Schema;
 using DesignPatternDemos.Adapter;
 using DesignPatternDemos.Bridge;
 using DesignPatternDemos.Builder;
+using DesignPatternDemos.ChainOfResponsibility;
 using DesignPatternDemos.Command;
 using DesignPatternDemos.Composite;
 using DesignPatternDemos.Decorator;
@@ -45,6 +46,7 @@ namespace DesignPatternDemos
             designPatternDemos.DemoProxy();
             designPatternDemos.DemoBridge();
             designPatternDemos.DemoBuilder();
+            designPatternDemos.DemoChainOfResponsibility();
         }
     }
 
@@ -375,6 +377,32 @@ namespace DesignPatternDemos
             var houseBuilder = new StandardHouseBuilder();
             director.BuildStandardHouse(houseBuilder, true);
             var house = houseBuilder.GetResult();
+        }
+
+        /// <summary>
+        /// Паттерн "Цепочка обязанностей" используется когда необходимо представить нескольким объектам возможность обработать запрос.
+        /// Например, имеется непрерывный поток сообщений к приложению, которые можно категоризировать (разбивать на группы) и обрабатывать каждую группу
+        /// определенным образом. Также к примеру можно отнести механизм Middleware в ASP .NET.
+        /// Преимущества паттерна:
+        /// - логическая изоляция отправителя запроса от получателей;
+        /// - объект упрощается, так как ему не нужно знать ни структуру цепочки, ни хранить прямые ссылки на ее элементы;
+        /// - возможность динамического добавления или удаления обязанностей посредством изменения элементов цепочки или их порядка.
+        /// Использование паттерна может усложнять отслеживание запросов и отладку.
+        /// </summary>
+        public void DemoChainOfResponsibility()
+        {
+            var authHandler = new AuthHandler
+            {
+                NextHandler = new BalanceHandler
+                {
+                    NextHandler = new SummaryHandler(),
+                }
+            };
+            authHandler.HandleMessage(new CommandItem
+            {
+                Credentials = "123",
+                CommandText = "summary",
+            });
         }
     }
 }

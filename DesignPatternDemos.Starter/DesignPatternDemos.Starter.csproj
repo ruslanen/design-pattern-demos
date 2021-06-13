@@ -11,6 +11,7 @@
       <ProjectReference Include="..\DesignPatternDemos.Adapter\DesignPatternDemos.Adapter.csproj" />
       <ProjectReference Include="..\DesignPatternDemos.Bridge\DesignPatternDemos.Bridge.csproj" />
       <ProjectReference Include="..\DesignPatternDemos.Builder\DesignPatternDemos.Builder.csproj" />
+      <ProjectReference Include="..\DesignPatternDemos.ChainOfResponsibility\DesignPatternDemos.ChainOfResponsibility.csproj" />
       <ProjectReference Include="..\DesignPatternDemos.Command\DesignPatternDemos.Command.csproj" />
       <ProjectReference Include="..\DesignPatternDemos.Composite\DesignPatternDemos.Composite.csproj" />
       <ProjectReference Include="..\DesignPatternDemos.Decorator\DesignPatternDemos.Decorator.csproj" />
