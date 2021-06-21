@@ -18,6 +18,7 @@
       <ProjectReference Include="..\DesignPatternDemos.Facade\DesignPatternDemos.Facade.csproj" />
       <ProjectReference Include="..\DesignPatternDemos.FactoryMethod\DesignPatternDemos.FactoryMethod.csproj" />
       <ProjectReference Include="..\DesignPatternDemos.Factory\DesignPatternDemos.Factory.csproj" />
+      <ProjectReference Include="..\DesignPatternDemos.Flyweight\DesignPatternDemos.Flyweight.csproj" />
       <ProjectReference Include="..\DesignPatternDemos.Iterator\DesignPatternDemos.Iterator.csproj" />
       <ProjectReference Include="..\DesignPatternDemos.Observer\DesignPatternDemos.Observer.csproj" />
       <ProjectReference Include="..\DesignPatternDemos.Proxy\DesignPatternDemos.Proxy.csproj" />
