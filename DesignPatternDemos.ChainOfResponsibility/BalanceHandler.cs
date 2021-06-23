@@ -11,7 +11,7 @@ namespace DesignPatternDemos.ChainOfResponsibility
                 // Выдача информации о текущем балансе
             }
             
-            NextHandler.HandleMessage(message);
+            NextHandler?.HandleMessage(message);
         }
     }
 }

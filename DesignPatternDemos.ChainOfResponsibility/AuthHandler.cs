@@ -14,7 +14,7 @@ namespace DesignPatternDemos.ChainOfResponsibility
                 throw new Exception("Access denied");
             }
             
-            NextHandler.HandleMessage(message);
+            NextHandler?.HandleMessage(message);
         }
     }
 }

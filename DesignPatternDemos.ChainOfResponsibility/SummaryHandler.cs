@@ -11,7 +11,7 @@ namespace DesignPatternDemos.ChainOfResponsibility
                 // Расчет и выдача суммарной информации
             }
             
-            NextHandler.HandleMessage(message);
+            NextHandler?.HandleMessage(message);
         }
     }
 }

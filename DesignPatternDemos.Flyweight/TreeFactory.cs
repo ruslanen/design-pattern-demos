@@ -8,7 +8,7 @@ namespace DesignPatternDemos.Flyweight
     /// </summary>
     public class TreeFactory
     {
-        private static List<TreeType> TreeTypes;
+        private static List<TreeType> TreeTypes = new List<TreeType>();
 
         public static TreeType GetTreeType(string name, string color, string texture)
         {
