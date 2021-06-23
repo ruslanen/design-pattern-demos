@@ -15,6 +15,7 @@ using DesignPatternDemos.Facade;
 using DesignPatternDemos.Factory;
 using DesignPatternDemos.FactoryMethod;
 using DesignPatternDemos.Flyweight;
+using DesignPatternDemos.Interpreter;
 using DesignPatternDemos.Iterator;
 using DesignPatternDemos.Observer.Models;
 using DesignPatternDemos.Observer.Observers;
@@ -49,6 +50,7 @@ namespace DesignPatternDemos
             designPatternDemos.DemoBuilder();
             designPatternDemos.DemoChainOfResponsibility();
             designPatternDemos.DemoFlyweight();
+            designPatternDemos.DemoInterpreter();
         }
     }
 
@@ -64,13 +66,13 @@ namespace DesignPatternDemos
             // Создание субъектов (наблюдаемых объектов)
             var climateObservable = new ClimateObservable();
             var activityObservable = new ActivityObservable();
-            
+
             // Создание наблюдателей
             var consoleWriterClimateObserver = new ConsoleWriterObserver(climateObservable);
             var consoleWriterActivityObserver = new ConsoleWriterObserver(activityObservable);
             var telegramBotClimateObserver = new TelegramBotObserver(climateObservable);
             var telegramBotActivityObserver = new TelegramBotObserver(activityObservable);
-            
+
             // Имитация установки значений наблюдаемым объектам
             // (как будто данные пришли по HTTP с ESP8266)
             climateObservable.SetSensorsData(new ClimateInfo
@@ -83,7 +85,7 @@ namespace DesignPatternDemos
                 LastActivity = DateTime.Now,
             });
         }
-        
+
         /// <summary>
         /// Демо паттерна "Декоратор".
         /// Паттерн Декоратор динамически наделяет объект новыми возможностями и является гибкой
@@ -104,7 +106,7 @@ namespace DesignPatternDemos
             newDailyReport = new PurchaseReport(newDailyReport);
             newDailyReport.ApplyStyles();
         }
-        
+
         /// <summary>
         /// Демо паттерна "Стратегия".
         /// Паттерн Стратегия определяет семейство алгоритмов, инкапсулирует каждый из них и обеспечивает их взаимозаменяемость.
@@ -121,7 +123,7 @@ namespace DesignPatternDemos
             httpService1.SendData();
             httpService2.SendData();
         }
-        
+
         /// <summary>
         /// Демо паттерна "Одиночка".
         /// Паттерн "Одиночка" гарантирует, что класс имеет только один экземпляр, и предоставляет глобальную точку доступа к этому экземпляру.
@@ -132,10 +134,12 @@ namespace DesignPatternDemos
                 File.ReadAllText("../../../../DesignPatternDemos.Singleton/demo.xml"),
                 LoadOptions.PreserveWhitespace | LoadOptions.SetLineInfo);
             var errors = new List<string>();
-            demoXDocument.Validate(DemoXmlSerializationWrap.SchemaSet, (sender, validationEventArgs) =>
-            {
-                errors.Add($"строка {validationEventArgs.Exception.LineNumber}, символ {validationEventArgs.Exception.LinePosition}: ошибка валидации: {validationEventArgs.Message}");
-            });
+            demoXDocument.Validate(DemoXmlSerializationWrap.SchemaSet,
+                (sender, validationEventArgs) =>
+                {
+                    errors.Add(
+                        $"строка {validationEventArgs.Exception.LineNumber}, символ {validationEventArgs.Exception.LinePosition}: ошибка валидации: {validationEventArgs.Message}");
+                });
 
             if (errors.Count > 0)
             {
@@ -143,12 +147,12 @@ namespace DesignPatternDemos
             }
             else
             {
-                var country = (Country)DemoXmlSerializationWrap.Serializer.Deserialize(demoXDocument.CreateReader());
+                var country = (Country) DemoXmlSerializationWrap.Serializer.Deserialize(demoXDocument.CreateReader());
                 Console.WriteLine(country.CountryName);
                 Console.WriteLine(country.Population);
             }
         }
-        
+
         /// <summary>
         /// Демо паттернов "Фабрика" (не является полноценным паттерном), "Фабричный метод" и "Абстрактная фабрика".
         /// </summary>
@@ -188,10 +192,10 @@ namespace DesignPatternDemos
             commandDispatcher.SetCommand(0, new HelpCommand());
             commandDispatcher.SetCommand(1, new PageSizeCommand(pageInfoService));
             commandDispatcher.SetCommand(2, new PageHtmlCommand(pageInfoService));
-            
+
             // TODO: Отдельный класс для определения типа команды по аргументам
-            commandDispatcher.OnCommandExecute(1, new []{ "https://github.com" });
-            commandDispatcher.OnCommandExecute(2, new []{ "https://github.com" });
+            commandDispatcher.OnCommandExecute(1, new[] {"https://github.com"});
+            commandDispatcher.OnCommandExecute(2, new[] {"https://github.com"});
         }
 
         /// <summary>
@@ -217,13 +221,14 @@ namespace DesignPatternDemos
                 // Этот сервис требует зависимости, поэтому экземпляр для него создается через параметризованный конструктор
                 if (service == typeof(PopulationInfoTcpServiceAdapter))
                 {
-                    serviceInstance = (Adapter.IHttpService) Activator.CreateInstance(service, new PopulationInfoTcpService());
+                    serviceInstance =
+                        (Adapter.IHttpService) Activator.CreateInstance(service, new PopulationInfoTcpService());
                 }
                 else
                 {
-                    serviceInstance = (Adapter.IHttpService)Activator.CreateInstance(service);
+                    serviceInstance = (Adapter.IHttpService) Activator.CreateInstance(service);
                 }
-                
+
                 results.Add(serviceInstance.GetResultFromHttp());
             }
         }
@@ -272,12 +277,12 @@ namespace DesignPatternDemos
 
             ShowSensorInfos(arduinoIterator);
             ShowSensorInfos(nodeMcuIterator);
-            
+
             void ShowSensorInfos(IIterator iterator)
             {
                 while (iterator.HasNext())
                 {
-                    var item = (SensorComponent)iterator.Next();
+                    var item = (SensorComponent) iterator.Next();
                     Console.WriteLine(item.Name);
                 }
             }
@@ -317,7 +322,7 @@ namespace DesignPatternDemos
             application.Start();
             application.Stop();
         }
-        
+
         /// <summary>
         /// Паттерн "Заместитель" представляет суррогатный объект, управляющий доступом к другому объекту.
         /// Отличие "Заместителя" от "Декоратора" в том, что первый управляет доступом, а второй расширяет поведение объекта.
@@ -432,6 +437,30 @@ namespace DesignPatternDemos
             var forest = new Forest();
             forest.PlantTree(10, 20, "Long conifer", "Green", "Standard");
             forest.PlantTree(20, 30, "Long conifer", "Green", "Standard");
+        }
+
+        /// <summary>
+        /// Паттерн "Интерпретатор" определяет представление грамматики для заданного языка и интерпретатор предложений этого языка.
+        /// Применяется для часто повторяющийхся операций. Представляет правила грамматики в виде классов, соответственно язык можно легко изменять или расширять.
+        /// Используется для реализации простых языков (когда простота важнее эффективности). При большом количестве правил реализация становится громоздкой и неуклюжей.
+        /// В таких случаях воспользоваться парсером/компилятором.
+        /// </summary>
+        public void DemoInterpreter()
+        {
+            Context context = new Context();
+            context.SetVariable("x", 10);
+            context.SetVariable("y", 20);
+            context.SetVariable("z", 15);
+            
+            IExpression expression = new SubtractExpression(
+                new AddExpression(
+                    new NumberExpression("x"), new NumberExpression("y")
+                ),
+                new NumberExpression("z")
+            );
+
+            var result = expression.Interpret(context);
+            Console.WriteLine(result);
         }
     }
 }
