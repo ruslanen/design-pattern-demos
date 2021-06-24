@@ -42,6 +42,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignPatternDemos.Flyweigh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignPatternDemos.Interpreter", "DesignPatternDemos.Interpreter\DesignPatternDemos.Interpreter.csproj", "{70B142F9-8DED-4BDE-B7C9-1F34FB357309}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignPatternDemos.Mediator", "DesignPatternDemos.Mediator\DesignPatternDemos.Mediator.csproj", "{1230422B-DEBA-4B55-8A4F-15A27FFE0B8E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -132,5 +134,9 @@ Global
 		{70B142F9-8DED-4BDE-B7C9-1F34FB357309}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70B142F9-8DED-4BDE-B7C9-1F34FB357309}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70B142F9-8DED-4BDE-B7C9-1F34FB357309}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1230422B-DEBA-4B55-8A4F-15A27FFE0B8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1230422B-DEBA-4B55-8A4F-15A27FFE0B8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1230422B-DEBA-4B55-8A4F-15A27FFE0B8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1230422B-DEBA-4B55-8A4F-15A27FFE0B8E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

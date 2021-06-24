@@ -17,6 +17,7 @@ using DesignPatternDemos.FactoryMethod;
 using DesignPatternDemos.Flyweight;
 using DesignPatternDemos.Interpreter;
 using DesignPatternDemos.Iterator;
+using DesignPatternDemos.Mediator;
 using DesignPatternDemos.Observer.Models;
 using DesignPatternDemos.Observer.Observers;
 using DesignPatternDemos.Observer.Subjects;
@@ -51,6 +52,7 @@ namespace DesignPatternDemos
             designPatternDemos.DemoChainOfResponsibility();
             designPatternDemos.DemoFlyweight();
             designPatternDemos.DemoInterpreter();
+            designPatternDemos.DemoMediator();
         }
     }
 
@@ -461,6 +463,31 @@ namespace DesignPatternDemos
 
             var result = expression.Interpret(context);
             Console.WriteLine(result);
+        }
+
+        /// <summary>
+        /// Паттерн "Посредник" используется для централизации сложных взаимодействий и управляющих операций между объектами.
+        /// Связанность множества классов друг с другом уменьшается за счет перемещения логики этих связей в один класс-посредник.
+        /// Чаще всего используется для связи нескольких графических компонентов.
+        /// Яркий пример из жизни - координация пилотов диспетчером.
+        /// Применяется в случае, когда сложно менять некоторые классы из-за того, что они имеют множество хаотичных связей с другими классами.
+        /// Когда нельзя повторно использовать класс, так как он зависит от множества других классов.
+        /// Когда приходится создавать множества подклассов, чтобы использовать одни и те же компоненты в разных контекстах.
+        /// Посредник может сильно раздуться и стать сложным в поддержке.
+        /// </summary>
+        public void DemoMediator()
+        {
+            var mediator = new CentralUnitMediator();
+            var alarmDevice = new AlarmDevice(mediator);
+            var coffeeMachineDevice = new CoffeeMachineDevice(mediator);
+            var grillDevice = new GrillDevice(mediator);
+            mediator.AlarmDevice = alarmDevice;
+            mediator.CoffeeMachineDevice = coffeeMachineDevice;
+            mediator.GrillDevice = grillDevice;
+            
+            alarmDevice.Send("It's 6:00AM, make cappuccino.");
+            coffeeMachineDevice.Send("Cappuccino done, make toast.");
+            grillDevice.Send("Toast done. Work completed.");
         }
     }
 }
