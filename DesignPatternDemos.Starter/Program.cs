@@ -18,6 +18,7 @@ using DesignPatternDemos.Flyweight;
 using DesignPatternDemos.Interpreter;
 using DesignPatternDemos.Iterator;
 using DesignPatternDemos.Mediator;
+using DesignPatternDemos.Memento;
 using DesignPatternDemos.Observer.Models;
 using DesignPatternDemos.Observer.Observers;
 using DesignPatternDemos.Observer.Subjects;
@@ -53,6 +54,7 @@ namespace DesignPatternDemos
             designPatternDemos.DemoFlyweight();
             designPatternDemos.DemoInterpreter();
             designPatternDemos.DemoMediator();
+            designPatternDemos.DemoMemento();
         }
     }
 
@@ -488,6 +490,28 @@ namespace DesignPatternDemos
             alarmDevice.Send("It's 6:00AM, make cappuccino.");
             coffeeMachineDevice.Send("Cappuccino done, make toast.");
             grillDevice.Send("Toast done. Work completed.");
+        }
+
+        /// <summary>
+        /// Паттерн "Хранитель" ("Снимок") используется для релации возврата к одному из предыдущих состояний
+        /// (к примеру, при нажатии пользователем "Отмена"). Важно заметить, что паттерн позволяет
+        /// выносить внутреннее состояние объекта за его пределы без последующего нарушения принципа инкапсуляции.
+        /// Преимущества хранителя в том, что:
+        /// - хранение состояния отдельно от ключевого объекта улучшает связность системы;
+        /// - происходит инкапсуляция данных ключевого объекта;
+        /// - простая реализация восстановления;
+        /// Иногда для сохранения состояния можно воспользоваться сериализацией. Но операция сохранения/восстановления
+        /// сама по себе может быть долгой операцией.
+        /// </summary>
+        public void DemoMemento()
+        {
+            var game = new Game();
+            game.GetDamaged(10);
+            game.LevelUp(1);
+            game.TakeMoney(100);
+            var gameHistory = new GameHistory(game);
+            gameHistory.Save();
+            gameHistory.Undo();
         }
     }
 }
