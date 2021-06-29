@@ -24,6 +24,7 @@
       <ProjectReference Include="..\DesignPatternDemos.Mediator\DesignPatternDemos.Mediator.csproj" />
       <ProjectReference Include="..\DesignPatternDemos.Memento\DesignPatternDemos.Memento.csproj" />
       <ProjectReference Include="..\DesignPatternDemos.Observer\DesignPatternDemos.Observer.csproj" />
+      <ProjectReference Include="..\DesignPatternDemos.Prototype\DesignPatternDemos.Prototype.csproj" />
       <ProjectReference Include="..\DesignPatternDemos.Proxy\DesignPatternDemos.Proxy.csproj" />
       <ProjectReference Include="..\DesignPatternDemos.Singleton\DesignPatternDemos.Singleton.csproj" />
       <ProjectReference Include="..\DesignPatternDemos.State\DesignPatternDemos.State.csproj" />

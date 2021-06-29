@@ -22,6 +22,7 @@ using DesignPatternDemos.Memento;
 using DesignPatternDemos.Observer.Models;
 using DesignPatternDemos.Observer.Observers;
 using DesignPatternDemos.Observer.Subjects;
+using DesignPatternDemos.Prototype;
 using DesignPatternDemos.Proxy;
 using DesignPatternDemos.Singleton;
 using DesignPatternDemos.State;
@@ -55,6 +56,7 @@ namespace DesignPatternDemos
             designPatternDemos.DemoInterpreter();
             designPatternDemos.DemoMediator();
             designPatternDemos.DemoMemento();
+            designPatternDemos.DemoPrototype();
         }
     }
 
@@ -512,6 +514,23 @@ namespace DesignPatternDemos
             var gameHistory = new GameHistory(game);
             gameHistory.Save();
             gameHistory.Undo();
+        }
+
+        /// <summary>
+        /// Паттерн "Прототип" используется в тех случаях, когда создание экземпляра класса требует больших затрат ресурсов
+        /// или занимает много времени. Является порождающим паттерном, который позволяет копировать объекты любой
+        /// сложности без привязки к их конкретным классам. Реализован в BCL через интерфейс ICloneable.
+        /// Легко распознать прототип по наличию методов Clone или Copy.
+        /// Преимущества прототипа в том, что:
+        /// - сложности реализации копирования скрыты от клиента;
+        /// - у клиента появляется возможность генерировать объекты, тип которых неизвестен клиенту;
+        /// - иногда копирование эффективнее, чем создание нового объекта.
+        /// </summary>
+        public void DemoPrototype()
+        {
+            var werewolfMonster = new WerewolfMonster(10, 40, 20);
+            var vampireMonster = new VampireMonster(4, 30);
+            var copyWerewolfMonster = werewolfMonster.Clone();
         }
     }
 }
