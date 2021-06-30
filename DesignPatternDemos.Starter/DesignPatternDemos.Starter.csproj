@@ -30,6 +30,7 @@
       <ProjectReference Include="..\DesignPatternDemos.State\DesignPatternDemos.State.csproj" />
       <ProjectReference Include="..\DesignPatternDemos.Strategy\DesignPatternDemos.Strategy.csproj" />
       <ProjectReference Include="..\DesignPatternDemos.TemplateMethod\DesignPatternDemos.TemplateMethod.csproj" />
+      <ProjectReference Include="..\DesignPatternDemos.Visitor\DesignPatternDemos.Visitor.csproj" />
     </ItemGroup>
 
 </Project>

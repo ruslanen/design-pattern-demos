@@ -48,6 +48,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignPatternDemos.Memento"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignPatternDemos.Prototype", "DesignPatternDemos.Prototype\DesignPatternDemos.Prototype.csproj", "{D3AC2101-1BF6-4FA9-AFA3-2566904B34C6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignPatternDemos.Visitor", "DesignPatternDemos.Visitor\DesignPatternDemos.Visitor.csproj", "{34DA1CDD-FB49-45C7-B2AE-EC2A3E9AD02A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -150,5 +152,9 @@ Global
 		{D3AC2101-1BF6-4FA9-AFA3-2566904B34C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3AC2101-1BF6-4FA9-AFA3-2566904B34C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3AC2101-1BF6-4FA9-AFA3-2566904B34C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34DA1CDD-FB49-45C7-B2AE-EC2A3E9AD02A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34DA1CDD-FB49-45C7-B2AE-EC2A3E9AD02A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34DA1CDD-FB49-45C7-B2AE-EC2A3E9AD02A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34DA1CDD-FB49-45C7-B2AE-EC2A3E9AD02A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

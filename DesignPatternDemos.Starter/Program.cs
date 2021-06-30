@@ -28,6 +28,7 @@ using DesignPatternDemos.Singleton;
 using DesignPatternDemos.State;
 using DesignPatternDemos.Strategy;
 using DesignPatternDemos.TemplateMethod;
+using DesignPatternDemos.Visitor;
 
 namespace DesignPatternDemos
 {
@@ -57,6 +58,7 @@ namespace DesignPatternDemos
             designPatternDemos.DemoMediator();
             designPatternDemos.DemoMemento();
             designPatternDemos.DemoPrototype();
+            designPatternDemos.DemoVisitor();
         }
     }
 
@@ -531,6 +533,29 @@ namespace DesignPatternDemos
             var werewolfMonster = new WerewolfMonster(10, 40, 20);
             var vampireMonster = new VampireMonster(4, 30);
             var copyWerewolfMonster = werewolfMonster.Clone();
+        }
+
+        /// <summary>
+        /// Паттерн "Посетитель" используется для расширения возможностей комбинации объектов в том случае,
+        /// если инкапсуляция не существенна. Иными словами это поведенческий паттерн, который позволяет добавить
+        /// новую операцию для целой иерархии классов, не изменяя при этом код этих классов.
+        /// В ситуации, когда полиморфизим запрещен (нельзя добавлять новое поведение в базовом классе и
+        /// переопределять в наследниках) может помочь "Посетитель". В соответствии с ним новое поведение будет
+        /// размещено в отдельном классе.
+        /// Отсюда и недостаток паттерна: нарушение инкапсуляции структуры и усложнение возможных изменений.
+        /// </summary>
+        public void DemoVisitor()
+        {
+            var cells = new List<ICell>
+            {
+                new SimpleCell(),
+                new CalculatedCell(),
+            };
+            var visitor = new LockingCellVisitor();
+            foreach (var cell in cells)
+            {
+                cell.Accept(visitor);
+            }
         }
     }
 }
